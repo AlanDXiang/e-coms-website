@@ -1984,37 +1984,37 @@
             <article class="occasion-card reveal">
               <h3>For Her</h3>
               <p>Elegant jewelry, sentimental keepsakes, and soft everyday pieces that feel personal.</p>
-              <button type="button" data-guide-filter="For Her">View picks -></button>
+              <button type="button" data-guide-filter="for-her">View picks -></button>
             </article>
 
             <article class="occasion-card reveal">
               <h3>For Mom</h3>
               <p>Warm, meaningful gifts for Mother's Day, birthdays, or just-because moments.</p>
-              <button type="button" data-guide-filter="For Mom">View picks -></button>
+              <button type="button" data-guide-filter="for-mom">View picks -></button>
             </article>
 
             <article class="occasion-card reveal">
               <h3>For Couples</h3>
               <p>Couple mugs, personalized decor, and sweet ideas for anniversaries or Valentine's Day.</p>
-              <button type="button" data-guide-filter="For Couples">View picks -></button>
+              <button type="button" data-guide-filter="for-couples">View picks -></button>
             </article>
 
             <article class="occasion-card reveal">
               <h3>For Home</h3>
               <p>Decorative pillow covers and cozy accents that refresh a room with minimal effort.</p>
-              <button type="button" data-guide-filter="For Home">View picks -></button>
+              <button type="button" data-guide-filter="for-home">View picks -></button>
             </article>
 
             <article class="occasion-card reveal">
               <h3>Under $20</h3>
               <p>Affordable gift ideas with a polished look and easy marketplace checkout.</p>
-              <button type="button" data-guide-filter="Under $20">View picks -></button>
+              <button type="button" data-guide-filter="under-20">View picks -></button>
             </article>
 
             <article class="occasion-card reveal">
-              <h3>Personalized Gifts</h3>
-              <p>Customizable products that turn simple finds into memorable keepsakes.</p>
-              <button type="button" data-guide-filter="Personalized">View picks -></button>
+              <h3>Thoughtful Gifts</h3>
+              <p>Meaningful picks for birthdays, Mother's Day, and just-because moments.</p>
+              <button type="button" data-guide-filter="thoughtful-gifts">View picks -></button>
             </article>
           </div>
         </div>
@@ -2240,6 +2240,7 @@
 
     let activeFilter = "All";
     let activeSearch = "";
+    let activeGuideFilter = "";
     let activeSort = "featured";
 
     const formatPrice = (price) =>
@@ -2274,6 +2275,40 @@
       return searchable.includes(query);
     };
 
+    const productText = (product) => [
+      product.title,
+      product.category,
+      product.description,
+      product.marketplace,
+      product.badge,
+      ...(product.tags || [])
+    ].join(" ").toLowerCase();
+
+    const productMatchesGuide = (product) => {
+      if (!activeGuideFilter) return true;
+
+      const text = productText(product);
+      const tags = product.tags || [];
+      const hasTag = (tagName) => tags.some(tag => tag.toLowerCase() === tagName.toLowerCase());
+
+      switch (activeGuideFilter) {
+        case "for-her":
+          return product.category === "Jewelry" || hasTag("For Women") || text.includes("for women");
+        case "for-mom":
+          return hasTag("For Mom") || hasTag("Mother's Day") || text.includes("mom") || text.includes("mother") || text.includes("grandma");
+        case "for-couples":
+          return product.category === "Custom Mugs" || text.includes("coffee") || text.includes("mug");
+        case "for-home":
+          return product.category === "Pillow Covers" || hasTag("Home Decor") || text.includes("home decor") || text.includes("living room");
+        case "under-20":
+          return hasNumber(product.price) && product.price < 20;
+        case "thoughtful-gifts":
+          return text.includes("gift") || text.includes("birthday") || text.includes("mother") || text.includes("mom");
+        default:
+          return true;
+      }
+    };
+
     const sortProducts = (items) => {
       const sorted = [...items];
 
@@ -2294,7 +2329,7 @@
 
     const renderProducts = () => {
       const filtered = sortProducts(
-        products.filter(product => productMatchesFilter(product) && productMatchesSearch(product))
+        products.filter(product => productMatchesFilter(product) && productMatchesSearch(product) && productMatchesGuide(product))
       );
 
       productGrid.innerHTML = filtered.map(product => {
@@ -2371,12 +2406,14 @@
         filterButtons.forEach(btn => btn.classList.remove("active"));
         button.classList.add("active");
         activeFilter = button.dataset.filter;
+        activeGuideFilter = "";
         renderProducts();
       });
     });
 
     productSearch.addEventListener("input", (event) => {
       activeSearch = event.target.value;
+      activeGuideFilter = "";
       renderProducts();
     });
 
@@ -2397,9 +2434,9 @@
 
     document.querySelectorAll("[data-guide-filter]").forEach(button => {
       button.addEventListener("click", () => {
-        const guideFilter = button.dataset.guideFilter;
-        activeSearch = guideFilter;
-        productSearch.value = guideFilter;
+        activeGuideFilter = button.dataset.guideFilter;
+        activeSearch = "";
+        productSearch.value = "";
 
         filterButtons.forEach(btn => btn.classList.remove("active"));
         const allButton = [...filterButtons].find(btn => btn.dataset.filter === "All");

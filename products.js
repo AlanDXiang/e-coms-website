@@ -274,5 +274,83 @@ window.PRODUCTS = [
         "Stock count is not shown."
       ]
     }
+  },
+  {
+    id: "temu-love-you-floral-linen-pillow-cover-008",
+    title: "Linen Pillowcase Pillow Cover Pillow Shams",
+    category: "Pillow Covers",
+    price: 6.39,
+    originalPrice: null,
+    rating: null,
+    reviews: null,
+    badge: "Almost Sold Out",
+    tags: [
+      "Pillow Covers",
+      "18x18",
+      "Love You",
+      "Mother's Day",
+      "Home Decor"
+    ],
+    description: "White linen-style pillow cover with a pink Love You floral design. The Temu screenshot lists it as an 18x18 inch cooling hypoallergenic wrinkle free hidden zipper decorative pillow sham for sofa, bedroom, living room, and home decor, suitable as a Mother's Day gift for women, mom, or grandma.",
+    image: "https://img.kwcdn.com/product/fancy/fa85a80f-705d-4517-8222-e8c5814de905.jpg",
+    hoverImage: "",
+    marketplace: "Temu",
+    productUrl: "https://share.temu.com/KzAmFMUK4JC",
+    cta: "Buy on Temu",
+    featured: 8,
+    details: {
+      seller: "Folio Fusion",
+      sold: 8,
+      color: "White",
+      size: "18x18 in",
+      capacity: null,
+      shipping: "Local warehouse; screenshot says fastest delivery in 2 business days",
+      unknown: [
+        "Original price is not shown.",
+        "Product rating and review count are not shown.",
+        "Exact fabric composition is not shown beyond the listing title saying linen pillowcase.",
+        "Whether pillow insert is included is not shown.",
+        "Stock count is not shown."
+      ]
+    }
+  },
+  {
+    id: "temu-van-gogh-wheatfield-tumbler-009",
+    title: "Van Gogh Wheatfield with Crows Art Print Bottle",
+    category: "Custom Mugs",
+    price: 13.27,
+    originalPrice: null,
+    rating: null,
+    reviews: null,
+    badge: "Almost Sold Out",
+    tags: [
+      "20oz",
+      "Stainless Steel",
+      "Insulated",
+      "Travel Mug",
+      "Art Print"
+    ],
+    description: "White 20oz stainless steel insulated tumbler with a Van Gogh Wheatfield with Crows art print, lid, and straw. The Temu screenshot lists it as a beverage container, kitchen storage item, travel mug, water bottle, coffee cup drinkware, and gift for family, bars, and whisky enthusiasts.",
+    image: "https://img.kwcdn.com/product/fancy/2e44e222-55cf-43d1-825d-7e3ad298d275.jpg",
+    hoverImage: "",
+    marketplace: "Temu",
+    productUrl: "https://share.temu.com/yVqawh7cojC",
+    cta: "Buy on Temu",
+    featured: 9,
+    details: {
+      seller: "Folio Fusion",
+      sold: 8,
+      color: "White",
+      size: "20oz",
+      capacity: "20oz",
+      shipping: "Local warehouse; screenshot says fastest delivery in 2 business days",
+      unknown: [
+        "Original price is not shown.",
+        "Product rating and review count are not shown.",
+        "Exact dimensions are not shown.",
+        "Stock count is not shown.",
+        "Whether it is dishwasher safe or microwave safe is not shown."
+      ]
+    }
   }
 ];
