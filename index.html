@@ -1,0 +1,2529 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="A premium curated lifestyle product showcase for jewelry, custom mugs, pillow covers, and thoughtful personalized gifts."
+  />
+  <title>Lumi猫re Finds 鈥?Curated Gifts & Lifestyle Picks</title>
+
+  <style>
+    /* =========================================================
+       Lumi猫re Finds 鈥?Single File E-commerce Showcase Website
+       ---------------------------------------------------------
+       HOW TO CUSTOMIZE:
+       1. Update product links/images in the `products` array
+          near the bottom of this file.
+       2. Replace placeholder Temu URLs with real marketplace URLs.
+       3. Replace placeholder images with your real product images.
+       4. Update brand name, footer links, and promotion copy.
+       ========================================================= */
+
+    :root {
+      --bg: #fbf5ee;
+      --bg-2: #fffaf4;
+      --surface: rgba(255, 255, 255, 0.72);
+      --surface-solid: #fffdf9;
+      --ink: #191512;
+      --muted: #756a62;
+      --soft-muted: #9d8f84;
+      --line: rgba(55, 40, 30, 0.12);
+
+      --blush: #eeb7b7;
+      --blush-2: #f7dcdc;
+      --gold: #c99a45;
+      --gold-2: #f2d9a2;
+      --ivory: #fffaf1;
+      --beige: #e9d8c3;
+      --cocoa: #4b3026;
+      --soft-black: #181412;
+
+      --success: #5e7d62;
+      --danger: #b85c5c;
+
+      --radius-xs: 12px;
+      --radius-sm: 18px;
+      --radius-md: 28px;
+      --radius-lg: 40px;
+      --radius-xl: 56px;
+
+      --shadow-soft: 0 22px 70px rgba(61, 42, 29, 0.12);
+      --shadow-card: 0 20px 54px rgba(55, 35, 20, 0.13);
+      --shadow-hover: 0 28px 78px rgba(55, 35, 20, 0.2);
+
+      --font-serif: Georgia, "Times New Roman", Times, serif;
+      --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+      --container: 1180px;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      color: var(--ink);
+      font-family: var(--font-sans);
+      background:
+        radial-gradient(circle at 12% 10%, rgba(238, 183, 183, 0.38), transparent 30%),
+        radial-gradient(circle at 88% 6%, rgba(242, 217, 162, 0.45), transparent 34%),
+        radial-gradient(circle at 70% 78%, rgba(233, 216, 195, 0.58), transparent 36%),
+        linear-gradient(135deg, #fff9f1 0%, #f7ece2 48%, #fffaf4 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      pointer-events: none;
+      opacity: 0.38;
+      background-image:
+        linear-gradient(rgba(75, 48, 38, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(75, 48, 38, 0.035) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: radial-gradient(circle at 50% 18%, black, transparent 78%);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        linear-gradient(120deg, transparent 0 32%, rgba(255,255,255,.35) 44%, transparent 58%),
+        radial-gradient(circle at 20% 70%, rgba(255,255,255,.5), transparent 24%);
+      opacity: 0.56;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input,
+    select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 36px));
+      margin-inline: auto;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 13px;
+      border: 1px solid rgba(201, 154, 69, 0.28);
+      border-radius: 999px;
+      background: rgba(255, 253, 249, 0.72);
+      color: var(--cocoa);
+      font-size: 0.78rem;
+      font-weight: 750;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: 0 10px 30px rgba(75, 48, 38, 0.06);
+      backdrop-filter: blur(18px);
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 99px;
+      background: linear-gradient(135deg, var(--blush), var(--gold));
+      box-shadow: 0 0 0 5px rgba(238, 183, 183, 0.18);
+    }
+
+    .section {
+      padding: 92px 0;
+      position: relative;
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 34px;
+    }
+
+    .section-heading h2 {
+      max-width: 720px;
+      font-family: var(--font-serif);
+      font-size: clamp(2.15rem, 5vw, 4.6rem);
+      line-height: 0.95;
+      letter-spacing: -0.055em;
+      font-weight: 500;
+    }
+
+    .section-heading p {
+      max-width: 470px;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    .text-gradient {
+      background: linear-gradient(120deg, #1b1512 0%, #8f5f49 45%, #c99a45 88%);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 14px 22px;
+      border: 0;
+      border-radius: 999px;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      transition: transform .35s var(--ease), box-shadow .35s var(--ease), background .35s var(--ease);
+      isolation: isolate;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .btn::after {
+      content: "";
+      position: absolute;
+      inset: -40% -60%;
+      background: linear-gradient(100deg, transparent 30%, rgba(255,255,255,.55) 48%, transparent 64%);
+      transform: translateX(-65%) rotate(8deg);
+      transition: transform .65s var(--ease);
+      z-index: -1;
+    }
+
+    .btn:hover::after {
+      transform: translateX(62%) rotate(8deg);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      color: #fffaf1;
+      background: linear-gradient(135deg, #1e1714, #503327 55%, #9b7141);
+      box-shadow: 0 18px 42px rgba(75, 48, 38, 0.25);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 26px 58px rgba(75, 48, 38, 0.32);
+    }
+
+    .btn-secondary {
+      color: var(--ink);
+      background: rgba(255, 253, 249, 0.68);
+      border: 1px solid rgba(75, 48, 38, 0.12);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 14px 34px rgba(75, 48, 38, 0.08);
+    }
+
+    .btn-small {
+      min-height: 40px;
+      padding: 11px 15px;
+      font-size: 0.88rem;
+    }
+
+    .btn-full {
+      width: 100%;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -80px;
+      left: 18px;
+      z-index: 999;
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: var(--ink);
+      color: white;
+      transition: top .25s ease;
+    }
+
+    .skip-link:focus {
+      top: 18px;
+    }
+
+    /* Header */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 90;
+      border-bottom: 1px solid rgba(75, 48, 38, 0.08);
+      background: rgba(251, 245, 238, 0.78);
+      backdrop-filter: blur(24px);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      letter-spacing: -0.035em;
+      font-size: 1.15rem;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border-radius: 16px;
+      color: #fffaf1;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,.5), transparent 28%),
+        linear-gradient(135deg, #2a1b16, #8f5f49 55%, #d4a957);
+      box-shadow: 0 16px 34px rgba(75, 48, 38, 0.22);
+    }
+
+    .brand-mark svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px;
+      border: 1px solid rgba(75, 48, 38, 0.1);
+      border-radius: 999px;
+      background: rgba(255, 253, 249, 0.5);
+    }
+
+    .nav-links a {
+      padding: 10px 13px;
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 750;
+      transition: background .25s ease, color .25s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--ink);
+      background: rgba(238, 183, 183, 0.24);
+      outline: none;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      width: 46px;
+      height: 46px;
+      border: 1px solid rgba(75, 48, 38, 0.12);
+      border-radius: 999px;
+      background: rgba(255, 253, 249, 0.72);
+      color: var(--ink);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 62px 0 54px;
+      min-height: calc(100vh - 76px);
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.02fr) minmax(360px, 0.78fr);
+      align-items: center;
+      gap: 46px;
+    }
+
+    .hero-copy h1 {
+      margin: 20px 0 22px;
+      max-width: 830px;
+      font-family: var(--font-serif);
+      font-size: clamp(3.4rem, 8.7vw, 7.9rem);
+      line-height: 0.88;
+      font-weight: 500;
+      letter-spacing: -0.07em;
+    }
+
+    .hero-copy .lead {
+      max-width: 650px;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      line-height: 1.75;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      margin: 34px 0 28px;
+    }
+
+    .trust-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(120px, 1fr));
+      gap: 12px;
+      max-width: 800px;
+    }
+
+    .trust-pill {
+      min-height: 78px;
+      padding: 15px;
+      border: 1px solid rgba(75, 48, 38, 0.1);
+      border-radius: 22px;
+      background: rgba(255, 253, 249, 0.55);
+      box-shadow: 0 12px 38px rgba(75, 48, 38, 0.06);
+      backdrop-filter: blur(18px);
+    }
+
+    .trust-pill strong {
+      display: block;
+      font-size: 0.92rem;
+      letter-spacing: -0.02em;
+    }
+
+    .trust-pill span {
+      display: block;
+      margin-top: 4px;
+      color: var(--soft-muted);
+      font-size: 0.78rem;
+      line-height: 1.35;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 630px;
+      perspective: 1000px;
+    }
+
+    .hero-orb {
+      position: absolute;
+      inset: 8% 4% auto auto;
+      width: 430px;
+      height: 430px;
+      border-radius: 999px;
+      background:
+        radial-gradient(circle at 35% 25%, rgba(255,255,255,.85), transparent 20%),
+        linear-gradient(135deg, rgba(238,183,183,.52), rgba(242,217,162,.7));
+      filter: blur(0.2px);
+      box-shadow: inset 0 0 70px rgba(255,255,255,.68), 0 34px 90px rgba(75,48,38,.13);
+      animation: breathe 7s ease-in-out infinite;
+    }
+
+    .floating-card {
+      position: absolute;
+      border: 1px solid rgba(255,255,255,.66);
+      border-radius: 34px;
+      background: rgba(255, 253, 249, 0.72);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+      backdrop-filter: blur(20px);
+      transform-style: preserve-3d;
+      animation: float 7.5s ease-in-out infinite;
+    }
+
+    .floating-card img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .floating-card.main {
+      width: 300px;
+      height: 420px;
+      right: 34px;
+      top: 78px;
+      transform: rotate(5deg);
+    }
+
+    .floating-card.left {
+      width: 220px;
+      height: 285px;
+      left: 22px;
+      top: 190px;
+      transform: rotate(-9deg);
+      animation-delay: -1.8s;
+    }
+
+    .floating-card.bottom {
+      width: 255px;
+      height: 310px;
+      right: 130px;
+      bottom: 30px;
+      transform: rotate(-5deg);
+      animation-delay: -3.2s;
+    }
+
+    .mini-stat {
+      position: absolute;
+      left: 0;
+      bottom: 80px;
+      width: 245px;
+      padding: 18px;
+      border: 1px solid rgba(75,48,38,.1);
+      border-radius: 28px;
+      background: rgba(255, 253, 249, 0.8);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(20px);
+      animation: float 8s ease-in-out infinite;
+      animation-delay: -4.2s;
+    }
+
+    .mini-stat .stars {
+      color: var(--gold);
+      letter-spacing: 1px;
+      font-size: 0.95rem;
+    }
+
+    .mini-stat strong {
+      display: block;
+      margin: 7px 0 4px;
+      font-size: 1.05rem;
+      letter-spacing: -0.03em;
+    }
+
+    .mini-stat p {
+      color: var(--muted);
+      font-size: 0.86rem;
+      line-height: 1.45;
+    }
+
+    .marketplace-chip {
+      position: absolute;
+      right: 0;
+      bottom: 172px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 15px;
+      border-radius: 999px;
+      border: 1px solid rgba(75,48,38,.1);
+      background: rgba(255,255,255,.76);
+      box-shadow: 0 18px 45px rgba(75,48,38,.11);
+      color: var(--cocoa);
+      font-weight: 850;
+      backdrop-filter: blur(18px);
+      animation: float 7s ease-in-out infinite;
+      animation-delay: -2.6s;
+    }
+
+    .marketplace-chip span {
+      width: 12px;
+      height: 12px;
+      border-radius: 99px;
+      background: linear-gradient(135deg, var(--success), var(--gold));
+    }
+
+    /* Featured Categories */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .category-card {
+      position: relative;
+      min-height: 310px;
+      padding: 22px;
+      border: 1px solid rgba(75,48,38,.1);
+      border-radius: 34px;
+      overflow: hidden;
+      background: var(--surface);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(18px);
+      transition: transform .45s var(--ease), box-shadow .45s var(--ease);
+    }
+
+    .category-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .category-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top, rgba(25,21,18,.58), transparent 58%),
+        var(--category-bg);
+      z-index: 0;
+      transition: transform .8s var(--ease);
+      background-size: cover;
+      background-position: center;
+    }
+
+    .category-card:hover::before {
+      transform: scale(1.06);
+    }
+
+    .category-card::after {
+      content: "";
+      position: absolute;
+      inset: 14px;
+      border: 1px solid rgba(255,255,255,.36);
+      border-radius: 26px;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .category-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      min-height: 266px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      color: white;
+    }
+
+    .category-content span {
+      width: fit-content;
+      margin-bottom: 12px;
+      padding: 7px 11px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.2);
+      color: #fffaf1;
+      font-size: 0.78rem;
+      font-weight: 800;
+      backdrop-filter: blur(8px);
+    }
+
+    .category-content h3 {
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      line-height: 0.95;
+      letter-spacing: -0.05em;
+      font-weight: 500;
+    }
+
+    .category-content p {
+      margin-top: 10px;
+      max-width: 250px;
+      color: rgba(255,255,255,.82);
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    /* Product Showcase */
+    .showcase-panel {
+      padding: 22px;
+      border: 1px solid rgba(75,48,38,.1);
+      border-radius: 38px;
+      background: rgba(255,253,249,.58);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(22px);
+    }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .search-wrap {
+      position: relative;
+    }
+
+    .search-wrap svg {
+      position: absolute;
+      left: 17px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      color: var(--soft-muted);
+      pointer-events: none;
+    }
+
+    .search-input,
+    .sort-select,
+    .newsletter input {
+      width: 100%;
+      min-height: 52px;
+      border: 1px solid rgba(75,48,38,.11);
+      border-radius: 999px;
+      background: rgba(255,255,255,.72);
+      color: var(--ink);
+      outline: none;
+      transition: box-shadow .25s ease, border-color .25s ease, background .25s ease;
+    }
+
+    .search-input {
+      padding: 0 18px 0 48px;
+    }
+
+    .sort-select {
+      min-width: 220px;
+      padding: 0 18px;
+      appearance: none;
+      background-image:
+        linear-gradient(45deg, transparent 50%, var(--muted) 50%),
+        linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+      background-position:
+        calc(100% - 22px) 22px,
+        calc(100% - 16px) 22px;
+      background-size: 6px 6px, 6px 6px;
+      background-repeat: no-repeat;
+    }
+
+    .search-input:focus,
+    .sort-select:focus,
+    .newsletter input:focus {
+      border-color: rgba(201,154,69,.55);
+      background: #fff;
+      box-shadow: 0 0 0 5px rgba(201,154,69,.13);
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+      margin-bottom: 25px;
+    }
+
+    .filter-btn {
+      min-height: 40px;
+      padding: 10px 14px;
+      border: 1px solid rgba(75,48,38,.1);
+      border-radius: 999px;
+      background: rgba(255,255,255,.48);
+      color: var(--muted);
+      font-weight: 800;
+      font-size: 0.87rem;
+      transition: background .25s ease, color .25s ease, transform .25s ease, box-shadow .25s ease;
+    }
+
+    .filter-btn:hover {
+      transform: translateY(-2px);
+      color: var(--ink);
+      background: rgba(255,255,255,.75);
+    }
+
+    .filter-btn.active {
+      color: #fffaf1;
+      background: linear-gradient(135deg, #201714, #7c5442);
+      box-shadow: 0 12px 30px rgba(75,48,38,.2);
+    }
+
+    .result-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .product-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(75,48,38,.1);
+      border-radius: 30px;
+      background: rgba(255, 253, 249, 0.86);
+      overflow: hidden;
+      box-shadow: 0 16px 38px rgba(75,48,38,.08);
+      transition: transform .42s var(--ease), box-shadow .42s var(--ease), opacity .3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .product-card.hidden {
+      display: none;
+    }
+
+    .product-media {
+      position: relative;
+      aspect-ratio: 1 / 1.08;
+      overflow: hidden;
+      background: linear-gradient(135deg, #f3e4d7, #fffaf1);
+    }
+
+    .product-media img {
+      height: 100%;
+      object-fit: cover;
+      transition: transform .75s var(--ease), opacity .45s ease;
+    }
+
+    .product-card:hover .product-media img {
+      transform: scale(1.06);
+    }
+
+    .product-media .hover-img {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+    }
+
+    .product-card:hover .product-media .hover-img {
+      opacity: 1;
+    }
+
+    .product-card:hover .product-media .has-hover {
+      opacity: 0;
+    }
+
+    .badge-stack {
+      position: absolute;
+      inset: 13px 13px auto 13px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      z-index: 2;
+    }
+
+    .product-badge,
+    .market-badge,
+    .category-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      width: fit-content;
+      min-height: 28px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.02em;
+      backdrop-filter: blur(12px);
+    }
+
+    .product-badge {
+      color: #fffaf1;
+      background: rgba(25,21,18,.72);
+    }
+
+    .market-badge {
+      margin-left: auto;
+      color: var(--cocoa);
+      background: rgba(255,250,241,.78);
+      border: 1px solid rgba(255,255,255,.5);
+    }
+
+    .product-body {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      padding: 18px;
+    }
+
+    .category-label {
+      color: #7a5142;
+      background: rgba(238,183,183,.25);
+      border: 1px solid rgba(238,183,183,.32);
+    }
+
+    .product-title {
+      margin: 12px 0 8px;
+      font-family: var(--font-serif);
+      font-size: 1.42rem;
+      line-height: 1.05;
+      letter-spacing: -0.045em;
+      font-weight: 500;
+    }
+
+    .product-description {
+      min-height: 44px;
+      color: var(--muted);
+      font-size: 0.91rem;
+      line-height: 1.52;
+    }
+
+    .rating-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin: 14px 0 12px;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    .stars {
+      color: var(--gold);
+      letter-spacing: -1px;
+      font-size: 0.94rem;
+    }
+
+    .price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 9px;
+      margin-top: auto;
+    }
+
+    .price {
+      font-size: 1.24rem;
+      font-weight: 950;
+      letter-spacing: -0.045em;
+    }
+
+    .original-price {
+      color: var(--soft-muted);
+      font-size: 0.9rem;
+      text-decoration: line-through;
+    }
+
+    .deal-note {
+      margin-left: auto;
+      color: var(--danger);
+      font-size: 0.78rem;
+      font-weight: 900;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin: 13px 0 16px;
+    }
+
+    .tag {
+      padding: 6px 8px;
+      border-radius: 999px;
+      background: rgba(233,216,195,.38);
+      color: #72584b;
+      font-size: 0.72rem;
+      font-weight: 800;
+    }
+
+    .card-actions {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 9px;
+    }
+
+    .quick-view-btn {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border: 1px solid rgba(75,48,38,.1);
+      border-radius: 999px;
+      background: rgba(255,255,255,.72);
+      color: var(--ink);
+      transition: transform .25s ease, background .25s ease;
+    }
+
+    .quick-view-btn:hover {
+      transform: translateY(-2px);
+      background: #fff;
+    }
+
+    .empty-state {
+      display: none;
+      padding: 60px 20px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .empty-state.show {
+      display: block;
+    }
+
+    .empty-state h3 {
+      color: var(--ink);
+      font-family: var(--font-serif);
+      font-size: 2rem;
+      font-weight: 500;
+      letter-spacing: -0.04em;
+      margin-bottom: 8px;
+    }
+
+    /* Gift Guide */
+    .gift-guide {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 20px;
+      align-items: stretch;
+    }
+
+    .gift-feature {
+      position: relative;
+      min-height: 520px;
+      padding: 30px;
+      border-radius: 40px;
+      overflow: hidden;
+      background:
+        linear-gradient(to top, rgba(25,21,18,.72), rgba(25,21,18,.06)),
+        url("https://images.unsplash.com/photo-1513201099705-a9746e1e201f?auto=format&fit=crop&w=1200&q=80");
+      background-size: cover;
+      background-position: center;
+      color: white;
+      box-shadow: var(--shadow-card);
+    }
+
+    .gift-feature-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .gift-feature h2 {
+      font-family: var(--font-serif);
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      line-height: 0.92;
+      letter-spacing: -0.065em;
+      font-weight: 500;
+    }
+
+    .gift-feature p {
+      max-width: 460px;
+      margin: 17px 0 23px;
+      color: rgba(255,255,255,.82);
+      line-height: 1.65;
+    }
+
+    .occasion-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .occasion-card {
+      position: relative;
+      min-height: 164px;
+      padding: 22px;
+      border: 1px solid rgba(75,48,38,.1);
+      border-radius: 30px;
+      background: rgba(255,253,249,.65);
+      box-shadow: 0 16px 42px rgba(75,48,38,.08);
+      overflow: hidden;
+      transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+    }
+
+    .occasion-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-card);
+    }
+
+    .occasion-card::after {
+      content: "";
+      position: absolute;
+      right: -46px;
+      top: -46px;
+      width: 150px;
+      height: 150px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(238,183,183,.28), rgba(242,217,162,.42));
+    }
+
+    .occasion-card h3 {
+      position: relative;
+      z-index: 1;
+      font-family: var(--font-serif);
+      font-size: 1.75rem;
+      letter-spacing: -0.045em;
+      font-weight: 500;
+    }
+
+    .occasion-card p {
+      position: relative;
+      z-index: 1;
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.93rem;
+      line-height: 1.55;
+    }
+
+    .occasion-card button {
+      position: relative;
+      z-index: 1;
+      margin-top: 14px;
+      border: 0;
+      background: transparent;
+      color: var(--cocoa);
+      font-weight: 900;
+    }
+
+    /* Seasonal Promo */
+    .promo {
+      position: relative;
+      overflow: hidden;
+      border-radius: 48px;
+      padding: clamp(34px, 7vw, 70px);
+      background:
+        radial-gradient(circle at 84% 20%, rgba(255,255,255,.65), transparent 20%),
+        radial-gradient(circle at 15% 82%, rgba(238,183,183,.45), transparent 24%),
+        linear-gradient(135deg, #2a1b16, #865b48 52%, #d7af64);
+      color: #fffaf1;
+      box-shadow: 0 34px 90px rgba(75,48,38,.24);
+    }
+
+    .promo::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0.2;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,.75) 1px, transparent 1.5px);
+      background-size: 24px 24px;
+      mask-image: linear-gradient(90deg, transparent, black 24%, black 80%, transparent);
+    }
+
+    .promo-content {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .promo h2 {
+      max-width: 750px;
+      font-family: var(--font-serif);
+      font-size: clamp(2.4rem, 6vw, 5.7rem);
+      line-height: 0.9;
+      letter-spacing: -0.065em;
+      font-weight: 500;
+    }
+
+    .promo p {
+      max-width: 620px;
+      margin-top: 18px;
+      color: rgba(255,250,241,.78);
+      font-size: 1.08rem;
+      line-height: 1.7;
+    }
+
+    .promo-card {
+      width: 285px;
+      padding: 18px;
+      border: 1px solid rgba(255,255,255,.24);
+      border-radius: 32px;
+      background: rgba(255,255,255,.14);
+      backdrop-filter: blur(18px);
+    }
+
+    .promo-card img {
+      height: 230px;
+      object-fit: cover;
+      border-radius: 24px;
+      margin-bottom: 14px;
+    }
+
+    .promo-card strong {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 1.45rem;
+      letter-spacing: -0.04em;
+      font-weight: 500;
+    }
+
+    .promo-card span {
+      display: block;
+      margin-top: 4px;
+      color: rgba(255,250,241,.72);
+      font-size: 0.9rem;
+    }
+
+    /* Why Shop */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .why-card {
+      padding: 28px;
+      border: 1px solid rgba(75,48,38,.1);
+      border-radius: 34px;
+      background: rgba(255,253,249,.62);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(18px);
+    }
+
+    .why-icon {
+      display: grid;
+      place-items: center;
+      width: 54px;
+      height: 54px;
+      margin-bottom: 18px;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(238,183,183,.45), rgba(242,217,162,.62));
+      color: var(--cocoa);
+    }
+
+    .why-icon svg {
+      width: 25px;
+      height: 25px;
+    }
+
+    .why-card h3 {
+      font-family: var(--font-serif);
+      font-size: 1.75rem;
+      letter-spacing: -0.045em;
+      font-weight: 500;
+    }
+
+    .why-card p {
+      margin-top: 10px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* Newsletter */
+    .newsletter {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 0.86fr;
+      gap: 28px;
+      align-items: center;
+      padding: clamp(28px, 6vw, 58px);
+      border: 1px solid rgba(75,48,38,.1);
+      border-radius: 46px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(238,183,183,.22), transparent 28%),
+        rgba(255,253,249,.72);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      backdrop-filter: blur(22px);
+    }
+
+    .newsletter h2 {
+      max-width: 620px;
+      font-family: var(--font-serif);
+      font-size: clamp(2.2rem, 5vw, 5rem);
+      line-height: 0.92;
+      letter-spacing: -0.06em;
+      font-weight: 500;
+    }
+
+    .newsletter p {
+      max-width: 580px;
+      margin-top: 16px;
+      color: var(--muted);
+      line-height: 1.72;
+    }
+
+    .newsletter-form {
+      display: grid;
+      gap: 12px;
+      padding: 18px;
+      border-radius: 30px;
+      background: rgba(255,255,255,.56);
+      border: 1px solid rgba(75,48,38,.08);
+    }
+
+    .newsletter input {
+      padding: 0 18px;
+    }
+
+    .microcopy {
+      color: var(--soft-muted);
+      font-size: 0.82rem;
+      line-height: 1.45;
+    }
+
+    .form-message {
+      min-height: 22px;
+      color: var(--success);
+      font-size: 0.88rem;
+      font-weight: 800;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 64px 0 32px;
+      border-top: 1px solid rgba(75,48,38,.1);
+      background: rgba(255,253,249,.34);
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .footer p {
+      max-width: 560px;
+      margin-top: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+      max-width: 420px;
+    }
+
+    .footer-links a {
+      padding: 9px 12px;
+      border: 1px solid rgba(75,48,38,.09);
+      border-radius: 999px;
+      color: var(--muted);
+      background: rgba(255,255,255,.38);
+      font-weight: 750;
+      font-size: 0.88rem;
+      transition: color .25s ease, background .25s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--ink);
+      background: rgba(255,255,255,.78);
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      margin-top: 42px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(75,48,38,.08);
+      color: var(--soft-muted);
+      font-size: 0.84rem;
+      line-height: 1.55;
+    }
+
+    /* Quick View Modal */
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 120;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal.open {
+      display: flex;
+    }
+
+    .modal-backdrop {
+      position: absolute;
+      inset: 0;
+      background: rgba(25,21,18,.45);
+      backdrop-filter: blur(12px);
+    }
+
+    .modal-card {
+      position: relative;
+      z-index: 2;
+      width: min(920px, 100%);
+      max-height: 90vh;
+      overflow: auto;
+      display: grid;
+      grid-template-columns: 0.9fr 1fr;
+      border: 1px solid rgba(255,255,255,.55);
+      border-radius: 38px;
+      background: rgba(255,253,249,.92);
+      box-shadow: 0 40px 120px rgba(0,0,0,.24);
+      animation: modalIn .35s var(--ease);
+    }
+
+    .modal-image {
+      min-height: 520px;
+      background: #f3e4d7;
+    }
+
+    .modal-image img {
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .modal-content {
+      padding: 34px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      z-index: 3;
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border: 1px solid rgba(75,48,38,.1);
+      border-radius: 999px;
+      background: rgba(255,255,255,.82);
+      color: var(--ink);
+    }
+
+    .modal-content h3 {
+      margin: 14px 0 12px;
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 0.96;
+      letter-spacing: -0.055em;
+      font-weight: 500;
+    }
+
+    .modal-content p {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .modal-details {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin: 22px 0;
+    }
+
+    .modal-detail {
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(233,216,195,.32);
+    }
+
+    .modal-detail span {
+      display: block;
+      color: var(--soft-muted);
+      font-size: 0.75rem;
+      font-weight: 850;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .modal-detail strong {
+      display: block;
+      margin-top: 4px;
+      font-size: 1rem;
+    }
+
+    .disclaimer-box {
+      margin-top: 18px;
+      padding: 14px;
+      border: 1px solid rgba(75,48,38,.1);
+      border-radius: 18px;
+      background: rgba(255,255,255,.52);
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.55;
+    }
+
+    /* Scroll Reveal */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .7s var(--ease), transform .7s var(--ease);
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Animations */
+    @keyframes float {
+      0%, 100% {
+        translate: 0 0;
+      }
+      50% {
+        translate: 0 -16px;
+      }
+    }
+
+    @keyframes breathe {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.035);
+      }
+    }
+
+    @keyframes modalIn {
+      from {
+        opacity: 0;
+        transform: translateY(18px) scale(.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 1120px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 48px;
+      }
+
+      .hero-visual {
+        min-height: 570px;
+        max-width: 680px;
+        margin-inline: auto;
+        width: 100%;
+      }
+
+      .trust-row,
+      .category-grid,
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .gift-guide,
+      .promo-content,
+      .newsletter {
+        grid-template-columns: 1fr;
+      }
+
+      .promo-card {
+        width: min(360px, 100%);
+      }
+    }
+
+    @media (max-width: 860px) {
+      .nav-links {
+        position: fixed;
+        left: 18px;
+        right: 18px;
+        top: 86px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        border-radius: 26px;
+        padding: 12px;
+        background: rgba(255,253,249,.94);
+        box-shadow: var(--shadow-card);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        text-align: center;
+        padding: 14px;
+      }
+
+      .mobile-menu-btn {
+        display: grid;
+        place-items: center;
+      }
+
+      .nav-actions .btn {
+        display: none;
+      }
+
+      .section {
+        padding: 70px 0;
+      }
+
+      .section-heading {
+        grid-template-columns: 1fr;
+        align-items: start;
+      }
+
+      .toolbar {
+        grid-template-columns: 1fr;
+      }
+
+      .sort-select {
+        min-width: 100%;
+      }
+
+      .why-grid,
+      .occasion-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-card {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-image {
+        min-height: 300px;
+      }
+
+      .footer-grid,
+      .footer-bottom {
+        grid-template-columns: 1fr;
+        flex-direction: column;
+      }
+
+      .footer-links {
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        width: min(100% - 24px, var(--container));
+      }
+
+      .hero-copy h1 {
+        font-size: clamp(3.2rem, 18vw, 5.2rem);
+      }
+
+      .hero-copy .lead {
+        font-size: 1rem;
+      }
+
+      .hero-ctas {
+        align-items: stretch;
+      }
+
+      .hero-ctas .btn {
+        width: 100%;
+      }
+
+      .trust-row,
+      .category-grid,
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        min-height: 490px;
+      }
+
+      .hero-orb {
+        width: 330px;
+        height: 330px;
+        right: 0;
+      }
+
+      .floating-card.main {
+        width: 230px;
+        height: 330px;
+        right: 10px;
+        top: 54px;
+      }
+
+      .floating-card.left {
+        width: 165px;
+        height: 225px;
+        left: 0;
+        top: 170px;
+      }
+
+      .floating-card.bottom {
+        width: 180px;
+        height: 220px;
+        right: 58px;
+        bottom: 48px;
+      }
+
+      .mini-stat,
+      .marketplace-chip {
+        display: none;
+      }
+
+      .showcase-panel {
+        padding: 14px;
+        border-radius: 28px;
+      }
+
+      .filter-tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-bottom: 8px;
+        scrollbar-width: none;
+      }
+
+      .filter-tabs::-webkit-scrollbar {
+        display: none;
+      }
+
+      .filter-btn {
+        white-space: nowrap;
+      }
+
+      .result-meta {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .promo,
+      .newsletter {
+        border-radius: 34px;
+      }
+
+      .newsletter-form {
+        padding: 14px;
+      }
+
+      .modal {
+        padding: 10px;
+      }
+
+      .modal-card {
+        border-radius: 28px;
+      }
+
+      .modal-content {
+        padding: 24px;
+      }
+
+      .modal-details {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.001ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#products">Skip to products</a>
+
+  <header class="site-header" aria-label="Main navigation">
+    <div class="container nav">
+      <a href="#" class="brand" aria-label="Lumi猫re Finds home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 3.5l2.2 5.1 5.5.5-4.2 3.6 1.2 5.4L12 15.2 7.3 18.1l1.2-5.4-4.2-3.6 5.5-.5L12 3.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span>Lumi猫re Finds</span>
+      </a>
+
+      <nav class="nav-links" id="navLinks" aria-label="Primary">
+        <a href="#categories">Categories</a>
+        <a href="#products">Products</a>
+        <a href="#gift-guide">Gift Guide</a>
+        <a href="#why-us">Why Us</a>
+        <a href="#newsletter">Newsletter</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn btn-primary btn-small" href="#products">Explore Finds</a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open navigation menu" aria-expanded="false">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- A. Premium Hero Section -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <span class="eyebrow">Curated lifestyle finds</span>
+          <h1>Giftable pieces with a little everyday magic.</h1>
+          <p class="lead">
+            Discover jewelry, custom mugs, and pillow covers chosen for thoughtful gifting, cozy homes, and personal style.
+            Browse beautifully here, then check out securely on your preferred marketplace.
+          </p>
+
+          <div class="hero-ctas">
+            <a class="btn btn-primary" href="#products">
+              Explore Products
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+            <a class="btn btn-secondary" href="#gift-guide">View Gift Picks</a>
+          </div>
+
+          <div class="trust-row" aria-label="Trust signals">
+            <div class="trust-pill">
+              <strong>Curated for U.S. shoppers</strong>
+              <span>Style-forward finds for everyday gifting.</span>
+            </div>
+            <div class="trust-pill">
+              <strong>Gift-ready picks</strong>
+              <span>Thoughtful ideas for birthdays and holidays.</span>
+            </div>
+            <div class="trust-pill">
+              <strong>Marketplace checkout</strong>
+              <span>Shop directly through external retailers.</span>
+            </div>
+            <div class="trust-pill">
+              <strong>Updated product links</strong>
+              <span>Flexible links for Temu, Amazon, Etsy, and more.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal" aria-label="Lifestyle product preview collage">
+          <div class="hero-orb" aria-hidden="true"></div>
+
+          <div class="floating-card main" aria-hidden="true">
+            <img
+              src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=900&q=80"
+              alt=""
+            />
+          </div>
+
+          <div class="floating-card left" aria-hidden="true">
+            <img
+              src="https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?auto=format&fit=crop&w=800&q=80"
+              alt=""
+            />
+          </div>
+
+          <div class="floating-card bottom" aria-hidden="true">
+            <img
+              src="https://images.unsplash.com/photo-1603204077779-bed963ea7d0e?auto=format&fit=crop&w=800&q=80"
+              alt=""
+            />
+          </div>
+
+          <div class="mini-stat">
+            <div class="stars" aria-hidden="true">鈽呪槄鈽呪槄鈽?/div>
+            <strong>Popular gift ideas</strong>
+            <p>Personalized, affordable, and easy to love 鈥?selected for moments that feel meaningful.</p>
+          </div>
+
+          <div class="marketplace-chip">
+            <span aria-hidden="true"></span>
+            Easy external checkout
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- B. Featured Categories -->
+    <section class="section" id="categories">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <span class="eyebrow">Featured categories</span>
+            <h2>Curated by mood, moment, and meaning.</h2>
+          </div>
+          <p>
+            From delicate jewelry to personalized mugs and cozy pillow covers, each category is designed to help shoppers find something that feels personal.
+          </p>
+        </div>
+
+        <div class="category-grid">
+          <a
+            class="category-card reveal"
+            href="#products"
+            data-category-jump="Jewelry"
+            style="--category-bg:url('https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=900&q=80')"
+          >
+            <div class="category-content">
+              <span>Everyday sparkle</span>
+              <h3>Jewelry</h3>
+              <p>Delicate necklaces, earrings, bracelets, rings, and personalized keepsakes.</p>
+            </div>
+          </a>
+
+          <a
+            class="category-card reveal"
+            href="#products"
+            data-category-jump="Custom Mugs"
+            style="--category-bg:url('https://images.unsplash.com/photo-1577937927133-66ef06acdf18?auto=format&fit=crop&w=900&q=80')"
+          >
+            <div class="category-content">
+              <span>Made for mornings</span>
+              <h3>Custom Mugs</h3>
+              <p>Photo mugs, funny quote mugs, couple mugs, and seasonal coffee gifts.</p>
+            </div>
+          </a>
+
+          <a
+            class="category-card reveal"
+            href="#products"
+            data-category-jump="Pillow Covers"
+            style="--category-bg:url('https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=900&q=80')"
+          >
+            <div class="category-content">
+              <span>Cozy home detail</span>
+              <h3>Pillow Covers</h3>
+              <p>Decorative covers for sofas, bedrooms, seasonal styling, and housewarming gifts.</p>
+            </div>
+          </a>
+
+          <a
+            class="category-card reveal"
+            href="#products"
+            data-category-jump="Personalized"
+            style="--category-bg:url('https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=900&q=80')"
+          >
+            <div class="category-content">
+              <span>Thoughtful by design</span>
+              <h3>Personalized Gifts</h3>
+              <p>Customizable finds that make birthdays, holidays, and milestones feel special.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- C. Product Showcase Grid -->
+    <section class="section" id="products">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <span class="eyebrow">Product showcase</span>
+            <h2>Browse polished finds, then shop on your favorite marketplace.</h2>
+          </div>
+          <p>
+            Use filters, search, and sorting to quickly discover giftable products. Each card can link to Temu now and any marketplace later.
+          </p>
+        </div>
+
+        <div class="showcase-panel reveal">
+          <div class="toolbar">
+            <label class="search-wrap" for="productSearch">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="m21 21-4.35-4.35M10.5 18a7.5 7.5 0 1 1 0-15 7.5 7.5 0 0 1 0 15Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <input
+                class="search-input"
+                type="search"
+                id="productSearch"
+                placeholder="Search jewelry, mugs, pillow covers, gifts..."
+                autocomplete="off"
+              />
+            </label>
+
+            <label class="sr-only" for="sortSelect">Sort products</label>
+            <select class="sort-select" id="sortSelect" aria-label="Sort products">
+              <option value="featured">Featured</option>
+              <option value="price-low">Price: Low to High</option>
+              <option value="price-high">Price: High to Low</option>
+              <option value="highest-rated">Highest Rated</option>
+              <option value="best-deals">Best Deals</option>
+            </select>
+          </div>
+
+          <div class="filter-tabs" role="tablist" aria-label="Product category filters">
+            <button class="filter-btn active" type="button" data-filter="All">All</button>
+            <button class="filter-btn" type="button" data-filter="Jewelry">Jewelry</button>
+            <button class="filter-btn" type="button" data-filter="Glassware & Drinkware">Glassware & Drinkware</button>
+            <button class="filter-btn" type="button" data-filter="Custom Mugs">Custom Mugs</button>
+            <button class="filter-btn" type="button" data-filter="Pillow Covers">Pillow Covers</button>
+            <button class="filter-btn" type="button" data-filter="Gifts">Gifts</button>
+            <button class="filter-btn" type="button" data-filter="Personalized">Personalized</button>
+            <button class="filter-btn" type="button" data-filter="Holiday Picks">Holiday Picks</button>
+          </div>
+
+          <div class="result-meta">
+            <span id="resultCount">Showing curated products</span>
+            <span>Prices, availability, shipping, and checkout are handled by the external marketplace.</span>
+          </div>
+
+          <div class="product-grid" id="productGrid" aria-live="polite"></div>
+
+          <div class="empty-state" id="emptyState">
+            <h3>No matching finds yet.</h3>
+            <p>Try a different search term or choose another category.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- D. Gift Guide Section -->
+    <section class="section" id="gift-guide">
+      <div class="container">
+        <div class="gift-guide">
+          <div class="gift-feature reveal">
+            <div class="gift-feature-content">
+              <span class="eyebrow">Gift guide</span>
+              <h2>Make gift browsing feel effortless.</h2>
+              <p>
+                Whether you are shopping for her, Mom, couples, or a cozy home refresh, these shortcuts help shoppers find the right direction faster.
+              </p>
+              <a class="btn btn-secondary" href="#products">Explore Gift Picks</a>
+            </div>
+          </div>
+
+          <div class="occasion-grid">
+            <article class="occasion-card reveal">
+              <h3>For Her</h3>
+              <p>Elegant jewelry, sentimental keepsakes, and soft everyday pieces that feel personal.</p>
+              <button type="button" data-guide-filter="For Her">View picks 鈫?/button>
+            </article>
+
+            <article class="occasion-card reveal">
+              <h3>For Mom</h3>
+              <p>Warm, meaningful gifts for Mother鈥檚 Day, birthdays, or just-because moments.</p>
+              <button type="button" data-guide-filter="For Mom">View picks 鈫?/button>
+            </article>
+
+            <article class="occasion-card reveal">
+              <h3>For Couples</h3>
+              <p>Couple mugs, personalized decor, and sweet ideas for anniversaries or Valentine鈥檚 Day.</p>
+              <button type="button" data-guide-filter="For Couples">View picks 鈫?/button>
+            </article>
+
+            <article class="occasion-card reveal">
+              <h3>For Home</h3>
+              <p>Decorative pillow covers and cozy accents that refresh a room with minimal effort.</p>
+              <button type="button" data-guide-filter="For Home">View picks 鈫?/button>
+            </article>
+
+            <article class="occasion-card reveal">
+              <h3>Under $20</h3>
+              <p>Affordable gift ideas with a polished look and easy marketplace checkout.</p>
+              <button type="button" data-guide-filter="Under $20">View picks 鈫?/button>
+            </article>
+
+            <article class="occasion-card reveal">
+              <h3>Personalized Gifts</h3>
+              <p>Customizable products that turn simple finds into memorable keepsakes.</p>
+              <button type="button" data-guide-filter="Personalized">View picks 鈫?/button>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- E. Seasonal Promotion Section -->
+    <section class="section">
+      <div class="container">
+        <div class="promo reveal">
+          <div class="promo-content">
+            <div>
+              <span class="eyebrow">Seasonal edit</span>
+              <h2>Mother鈥檚 Day Gift Picks</h2>
+              <p>
+                Personalized gifts that feel thoughtful, jewelry she can wear every day, and cozy home decor finds for a heartfelt seasonal refresh.
+                Update this banner anytime for Valentine鈥檚 Day, Christmas, New Year, housewarming season, or limited-time marketplace deals.
+              </p>
+              <div class="hero-ctas">
+                <a class="btn btn-secondary" href="#products">Shop Seasonal Picks</a>
+                <a class="btn btn-primary" href="#newsletter">Get Gift Ideas</a>
+              </div>
+            </div>
+
+            <div class="promo-card" aria-label="Seasonal featured product">
+              <img
+                src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80"
+                alt="Elegant Mother鈥檚 Day gift arrangement with jewelry and flowers"
+              />
+              <strong>Thoughtful without feeling ordinary</strong>
+              <span>Jewelry, mugs, and cozy decor selected for meaningful gifting.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- F. Why Shop With Us -->
+    <section class="section" id="why-us">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <span class="eyebrow">Why shop with us</span>
+            <h2>A more beautiful way to discover marketplace finds.</h2>
+          </div>
+          <p>
+            We curate giftable products from external marketplaces so shoppers can browse with confidence and complete purchases directly with the retailer.
+          </p>
+        </div>
+
+        <div class="why-grid">
+          <article class="why-card reveal">
+            <div class="why-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M20 7 9 18l-5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Curated, not cluttered</h3>
+            <p>
+              Instead of endless scrolling, browse a focused edit of products chosen for style, giftability, and everyday usefulness.
+            </p>
+          </article>
+
+          <article class="why-card reveal">
+            <div class="why-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M6 8h12l-1 12H7L6 8Zm3 0a3 3 0 1 1 6 0" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <h3>Direct marketplace checkout</h3>
+            <p>
+              Product buttons open the external marketplace in a new tab, where pricing, shipping, availability, returns, and checkout are handled.
+            </p>
+          </article>
+
+          <article class="why-card reveal">
+            <div class="why-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 3v18M5 7h14M7 12h10M9 17h6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <h3>Flexible product links</h3>
+            <p>
+              The site is built to support Temu today and Amazon, Etsy, Shopify, TikTok Shop, Walmart, eBay, or other marketplaces later.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- G. Email Capture / Newsletter Section -->
+    <section class="section" id="newsletter">
+      <div class="container">
+        <div class="newsletter reveal">
+          <div>
+            <span class="eyebrow">Seasonal inspiration</span>
+            <h2>Get new gift ideas and seasonal finds.</h2>
+            <p>
+              Join for occasional curated edits: thoughtful gifts, cozy home accents, personalized product ideas, and marketplace finds worth bookmarking.
+            </p>
+          </div>
+
+          <form class="newsletter-form" id="newsletterForm">
+            <label for="emailInput" class="sr-only">Email address</label>
+            <input id="emailInput" type="email" placeholder="Enter your email address" required />
+            <button class="btn btn-primary btn-full" type="submit">Send Me Gift Ideas</button>
+            <p class="microcopy">
+              Front-end demo only. Connect this form to your email provider when you are ready.
+            </p>
+            <p class="form-message" id="formMessage" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- H. Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <a href="#" class="brand" aria-label="Lumi猫re Finds home">
+            <span class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M12 3.5l2.2 5.1 5.5.5-4.2 3.6 1.2 5.4L12 15.2 7.3 18.1l1.2-5.4-4.2-3.6 5.5-.5L12 3.5Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+              </svg>
+            </span>
+            <span>Lumi猫re Finds</span>
+          </a>
+          <p>
+            A curated product discovery site for jewelry, custom mugs, pillow covers, personalized gifts, and seasonal lifestyle finds.
+            Purchases are completed on external marketplace websites.
+          </p>
+        </div>
+
+        <nav class="footer-links" aria-label="Footer links">
+          <a href="#why-us">About</a>
+          <a href="#gift-guide">Gift Guide</a>
+          <a href="mailto:hello@example.com">Contact</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Affiliate Disclosure</a>
+        </nav>
+      </div>
+
+      <div class="footer-bottom">
+        <span>漏 <span id="year"></span> Lumi猫re Finds. Brand name and policies are placeholders for customization.</span>
+        <span>Some links may be affiliate or marketplace links. Prices and availability may change.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Quick View Modal -->
+  <div class="modal" id="quickViewModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-card">
+      <button class="modal-close" type="button" aria-label="Close quick view" data-close-modal>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </button>
+
+      <div class="modal-image">
+        <img id="modalImage" src="" alt="" />
+      </div>
+
+      <div class="modal-content">
+        <span class="category-label" id="modalCategory"></span>
+        <h3 id="modalTitle"></h3>
+        <p id="modalDescription"></p>
+
+        <div class="modal-details">
+          <div class="modal-detail">
+            <span>Marketplace</span>
+            <strong id="modalMarketplace"></strong>
+          </div>
+          <div class="modal-detail">
+            <span>Rating</span>
+            <strong id="modalRating"></strong>
+          </div>
+          <div class="modal-detail">
+            <span>Price</span>
+            <strong id="modalPrice"></strong>
+          </div>
+          <div class="modal-detail">
+            <span>Tags</span>
+            <strong id="modalTags"></strong>
+          </div>
+        </div>
+
+        <a class="btn btn-primary btn-full" id="modalCta" href="#" target="_blank" rel="noopener noreferrer">Shop Product</a>
+
+        <div class="disclaimer-box">
+          Prices, availability, shipping estimates, product details, returns, and checkout are managed by the external marketplace.
+          Please confirm all details on the marketplace product page before purchasing.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="products.js"></script>
+  <script>
+    const products = window.PRODUCTS || [];
+
+    const productGrid = document.getElementById("productGrid");
+    const productSearch = document.getElementById("productSearch");
+    const sortSelect = document.getElementById("sortSelect");
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const resultCount = document.getElementById("resultCount");
+    const emptyState = document.getElementById("emptyState");
+
+    let activeFilter = "All";
+    let activeSearch = "";
+    let activeSort = "featured";
+
+    const formatPrice = (price) =>
+      new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" }).format(price);
+
+    const hasNumber = (value) => typeof value === "number" && Number.isFinite(value);
+
+    const discountPercent = (price, originalPrice) => {
+      if (!hasNumber(price) || !hasNumber(originalPrice) || originalPrice <= price) return 0;
+      return Math.round(((originalPrice - price) / originalPrice) * 100);
+    };
+
+    const productMatchesFilter = (product) => {
+      if (activeFilter === "All") return true;
+      if (activeFilter === product.category) return true;
+      return (product.tags || []).some(tag => tag.toLowerCase() === activeFilter.toLowerCase());
+    };
+
+    const productMatchesSearch = (product) => {
+      const query = activeSearch.trim().toLowerCase();
+      if (!query) return true;
+
+      const searchable = [
+        product.title,
+        product.category,
+        product.description,
+        product.marketplace,
+        product.badge,
+        ...(product.tags || [])
+      ].join(" ").toLowerCase();
+
+      return searchable.includes(query);
+    };
+
+    const sortProducts = (items) => {
+      const sorted = [...items];
+
+      switch (activeSort) {
+        case "price-low":
+          return sorted.sort((a, b) => (a.price ?? Infinity) - (b.price ?? Infinity));
+        case "price-high":
+          return sorted.sort((a, b) => (b.price ?? -Infinity) - (a.price ?? -Infinity));
+        case "highest-rated":
+          return sorted.sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0) || (b.reviews ?? 0) - (a.reviews ?? 0));
+        case "best-deals":
+          return sorted.sort((a, b) => discountPercent(b.price, b.originalPrice) - discountPercent(a.price, a.originalPrice));
+        case "featured":
+        default:
+          return sorted.sort((a, b) => a.featured - b.featured);
+      }
+    };
+
+    const renderProducts = () => {
+      const filtered = sortProducts(
+        products.filter(product => productMatchesFilter(product) && productMatchesSearch(product))
+      );
+
+      productGrid.innerHTML = filtered.map(product => {
+        const percent = discountPercent(product.price, product.originalPrice);
+        const hoverClass = product.hoverImage ? "has-hover" : "";
+        const ratingHtml = hasNumber(product.rating) && hasNumber(product.reviews)
+          ? `
+              <div class="rating-row" aria-label="Rated ${product.rating} out of 5 based on ${product.reviews} reviews">
+                <span class="stars" aria-hidden="true">${renderStars(product.rating)}</span>
+                <strong>${product.rating}</strong>
+                <span>(${product.reviews.toLocaleString()} reviews)</span>
+              </div>
+            `
+          : "";
+        const originalPriceHtml = hasNumber(product.originalPrice)
+          ? `<span class="original-price">${formatPrice(product.originalPrice)}</span>`
+          : "";
+
+        return `
+          <article class="product-card" data-product-id="${product.id}">
+            <div class="product-media">
+              <div class="badge-stack">
+                <span class="product-badge">${product.badge}</span>
+                <span class="market-badge">${product.marketplace}</span>
+              </div>
+              <img class="${hoverClass}" src="${product.image}" alt="${product.title}" loading="lazy" />
+              ${product.hoverImage ? `<img class="hover-img" src="${product.hoverImage}" alt="" loading="lazy" aria-hidden="true" />` : ""}
+            </div>
+
+            <div class="product-body">
+              <span class="category-label">${product.category}</span>
+              <h3 class="product-title">${product.title}</h3>
+              <p class="product-description">${product.description}</p>
+
+              ${ratingHtml}
+
+              <div class="price-row">
+                <span class="price">${hasNumber(product.price) ? formatPrice(product.price) : "Price not shown"}</span>
+                ${originalPriceHtml}
+                ${percent ? `<span class="deal-note">${percent}% off</span>` : ""}
+              </div>
+
+              <div class="tag-row">
+                ${(product.tags || []).slice(0, 3).map(tag => `<span class="tag">${tag}</span>`).join("")}
+              </div>
+
+              <div class="card-actions">
+                <a class="btn btn-primary btn-small" href="${product.productUrl}" target="_blank" rel="noopener noreferrer">
+                  ${product.cta}
+                </a>
+                <button class="quick-view-btn" type="button" aria-label="Quick view ${product.title}" data-quick-view="${product.id}">
+                  <svg width="19" height="19" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M2.5 12s3.5-6.5 9.5-6.5S21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" stroke="currentColor" stroke-width="2"/>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      resultCount.textContent = `${filtered.length} ${filtered.length === 1 ? "product" : "products"} shown`;
+      emptyState.classList.toggle("show", filtered.length === 0);
+    };
+
+    const renderStars = (rating) => {
+      const rounded = Math.round(rating);
+      return "★★★★★".slice(0, rounded) + "☆☆☆☆☆".slice(0, 5 - rounded);
+    };
+
+    filterButtons.forEach(button => {
+      button.addEventListener("click", () => {
+        filterButtons.forEach(btn => btn.classList.remove("active"));
+        button.classList.add("active");
+        activeFilter = button.dataset.filter;
+        renderProducts();
+      });
+    });
+
+    productSearch.addEventListener("input", (event) => {
+      activeSearch = event.target.value;
+      renderProducts();
+    });
+
+    sortSelect.addEventListener("change", (event) => {
+      activeSort = event.target.value;
+      renderProducts();
+    });
+
+    document.querySelectorAll("[data-category-jump]").forEach(card => {
+      card.addEventListener("click", () => {
+        const category = card.dataset.categoryJump;
+        setTimeout(() => {
+          const targetButton = [...filterButtons].find(btn => btn.dataset.filter === category);
+          if (targetButton) targetButton.click();
+        }, 250);
+      });
+    });
+
+    document.querySelectorAll("[data-guide-filter]").forEach(button => {
+      button.addEventListener("click", () => {
+        const guideFilter = button.dataset.guideFilter;
+        activeSearch = guideFilter;
+        productSearch.value = guideFilter;
+
+        filterButtons.forEach(btn => btn.classList.remove("active"));
+        const allButton = [...filterButtons].find(btn => btn.dataset.filter === "All");
+        allButton.classList.add("active");
+        activeFilter = "All";
+
+        renderProducts();
+        document.getElementById("products").scrollIntoView({ behavior: "smooth" });
+      });
+    });
+
+    /* Quick View Modal */
+    const modal = document.getElementById("quickViewModal");
+    const modalImage = document.getElementById("modalImage");
+    const modalCategory = document.getElementById("modalCategory");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalDescription = document.getElementById("modalDescription");
+    const modalMarketplace = document.getElementById("modalMarketplace");
+    const modalRating = document.getElementById("modalRating");
+    const modalPrice = document.getElementById("modalPrice");
+    const modalTags = document.getElementById("modalTags");
+    const modalCta = document.getElementById("modalCta");
+
+    const openModal = (productId) => {
+      const product = products.find(item => item.id === productId);
+      if (!product) return;
+
+      modalImage.src = product.image;
+      modalImage.alt = product.title;
+      modalCategory.textContent = product.category;
+      modalTitle.textContent = product.title;
+      modalDescription.textContent = product.description;
+      modalMarketplace.textContent = product.marketplace;
+      modalRating.textContent = hasNumber(product.rating) && hasNumber(product.reviews)
+        ? `${product.rating} / 5 - ${product.reviews.toLocaleString()} reviews`
+        : "Rating and review count not shown";
+      modalPrice.textContent = `${hasNumber(product.price) ? formatPrice(product.price) : "Price not shown"} ${hasNumber(product.originalPrice) ? `was ${formatPrice(product.originalPrice)}` : ""}`;
+      modalTags.textContent = (product.tags || []).join(", ");
+      modalCta.href = product.productUrl;
+      modalCta.textContent = product.cta;
+
+      modal.classList.add("open");
+      document.body.style.overflow = "hidden";
+      modalCta.focus();
+    };
+
+    const closeModal = () => {
+      modal.classList.remove("open");
+      document.body.style.overflow = "";
+    };
+
+    document.addEventListener("click", (event) => {
+      const quickViewButton = event.target.closest("[data-quick-view]");
+      if (quickViewButton) {
+        openModal(quickViewButton.dataset.quickView);
+      }
+
+      if (event.target.closest("[data-close-modal]")) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && modal.classList.contains("open")) {
+        closeModal();
+      }
+    });
+
+    /* Newsletter Demo */
+    const newsletterForm = document.getElementById("newsletterForm");
+    const formMessage = document.getElementById("formMessage");
+
+    newsletterForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      formMessage.textContent = "Thank you 鈥?your gift inspiration signup is ready to connect to an email provider.";
+      newsletterForm.reset();
+    });
+
+    /* Mobile Navigation */
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    mobileMenuBtn.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      mobileMenuBtn.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        mobileMenuBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    /* Scroll Reveal */
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll(".reveal").forEach(element => revealObserver.observe(element));
+
+    /* Init */
+    document.getElementById("year").textContent = new Date().getFullYear();
+    renderProducts();
+  </script>
+
+  <style>
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
+</body>
+</html>
+
